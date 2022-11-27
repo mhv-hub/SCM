@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+    </Appenders>
+    <RollingFile name="LogToFile" fileName="logs/SCM-app.log"
+        filePattern="logs/log4j2-demo-%d{yyyy-MM-dd}-%i.log">
+        <PatternLayout>
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </PatternLayout>
+        <Policies>
+            <SizeBasedTriggeringPolicy size="10MB" />
+        </Policies>
+        <DefaultRolloverStrategy max="10" />
+    </RollingFile>
+    <Loggers>
+        <Logger name="com.smart" level="debug" additivity="false">
+            <AppenderRef ref="LogToFile" />
+            <AppenderRef ref="LogToConsole" />
+        </Logger>
+        <Logger name="org.springframework.boot" level="error" additivity="false">
+            <AppenderRef ref="LogToFile" />
+            <AppenderRef ref="LogToConsole" />
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToFile" />
+            <AppenderRef ref="LogToConsole" />
+        </Root>
+    </Loggers>
+</Configuration> <!-- 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+private static final Logger logger = LogManager.getLogger(Log4j2DemoApplication.class);
+logger.debug("Debugging log");
+logger.info("Info log");
+logger.warn("This is a warning!");
+logger.error("We have an Error");
+logger.fatal("Fatal error");
+-->

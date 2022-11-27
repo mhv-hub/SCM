@@ -31,11 +31,16 @@ import com.smart.entities.Contact;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 // If @RequestMapping is directly used on the class that means this url has some sub urls, so parent url is set on the entire class
 // Sub urls will be mapped to the methods of this class
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+	private final Logger logger = LogManager.getLogger();
 
 	@Autowired
 	private UserRepository userRepository;
@@ -63,6 +68,7 @@ public class UserController {
 	@RequestMapping("/index")
 	public String dashboard(Model model, Principal principal) {
 		model.addAttribute("title", "User Dashboard");
+		logger.info("User logged in : " + principal.getName());
 		return "normal/user_dashboard";
 	}
 
@@ -89,6 +95,7 @@ public class UserController {
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 				System.out.println("Image uploaded");
 			} else {
+				logger.error("No image provided by the user to create contact : " + p.getName());
 				contact.setImage("contact.png");
 			}
 
@@ -96,6 +103,7 @@ public class UserController {
 			session.setAttribute("message", new Message("Contact saved successfully !! ", "alert-success"));
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("Save contact failed for the user : " + p.getName());
 			session.setAttribute("message",
 					new Message("Something went wrong on the server !! " + e.getMessage(), "alert-danger"));
 			model.addAttribute("contact", contact);
@@ -116,6 +124,7 @@ public class UserController {
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", contacts.getTotalPages());
+		logger.info("User opened the contact list : " + p.getName());
 		return "normal/show_contacts";
 	}
 
