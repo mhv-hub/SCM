@@ -40,7 +40,7 @@ import org.apache.logging.log4j.Logger;
 @RequestMapping("/user")
 public class UserController {
 
-	private final Logger logger = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger(UserController.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -68,7 +68,8 @@ public class UserController {
 	@RequestMapping("/index")
 	public String dashboard(Model model, Principal principal) {
 		model.addAttribute("title", "User Dashboard");
-		logger.info("User logged in : " + principal.getName());
+		logger.info("***APP LOG || User logged in : " + principal.getName());
+		Message message = new Message("Dummy message objrct", "error");
 		return "normal/user_dashboard";
 	}
 
@@ -95,7 +96,7 @@ public class UserController {
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 				System.out.println("Image uploaded");
 			} else {
-				logger.error("No image provided by the user to create contact : " + p.getName());
+				logger.error("***APP LOG || No image provided by the user to create contact : " + p.getName());
 				contact.setImage("contact.png");
 			}
 
@@ -124,7 +125,7 @@ public class UserController {
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", contacts.getTotalPages());
-		logger.info("User opened the contact list : " + p.getName());
+		logger.info("***APP LOG || User opened the contact list : " + p.getName());
 		return "normal/show_contacts";
 	}
 
