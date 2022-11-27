@@ -34,7 +34,9 @@
         <Root level="info">
             <AppenderRef ref="LogToConsole" />
         </Root>
-        <Logger name="com.smart" additivity="false">
+        <!-- Name of logger should be the parent package, log from other packages will not be captured -->
+        <!-- Order should be increasing first root and then other logger. inside logger, level should be error, warn, info, debug, trace -->
+        <Logger name="com.smart.controller" additivity="false">
             <AppenderRef ref="LogToErrorFile" level="error" />
             <AppenderRef ref="LogToFile" level="info" />
         </Logger>
