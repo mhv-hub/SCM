@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <section>
+
+        <!-- <h2>Welcome to your dashboard<span th:text="${user.name}"></span></h2> -->
+
+        <script>
+            $(document).ready( () => {
+                $(".item").removeClass("active-link");
+                $("#home-link").addClass("active-link");
+            });
+        </script>
+    </section>
+</body>
+</html>

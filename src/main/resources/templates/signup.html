@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::Layout(~{signup::section})">
+<!-- Using the above th:replace, we are calling Layout method of base page and passing section element of this page.
+So the entire content of section will be sent to base and will replace the corresponding div in base page -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="my-card">
+                        <!-- th:if is used to check conditions
+                        th:classappend is used to append class ( we can even put condition append here ) -->
+                        <!-- session object is used to get the values set by controller on httpSession object -->
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" style="padding-bottom: 0px;" role="alert">
+                            <p class="text-center" th:text="${session.message.content}"></p>
+                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+                        <div class="container text-center">
+                            <!-- @{/.....} is used to specify urls and hit them -->
+                            <img style="width: 40px; padding-bottom: 10px; padding-top: 10px;" th:src="@{/img/register-icon.png}"/>
+                        </div>
+                        <!-- th:object="${objectname}" is used to get the object sent in the model object by controller -->
+                        <form novalidate th:action="@{/do_register}" method="post" th:object="${user}">
+                            <div class="mb-3">
+                                <label for="InputName" class="form-label">Your Name</label>
+                                <input type="text" name="name" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" th:value="${user.name}" id="name-field" placeholder="Enter your name here" required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputEmail" class="form-label">Your Email</label>
+                                <!-- ${user.name} used to get attributes of java object -->
+                                <input type="email" name="email" class="form-control" th:value="${user.email}" id="email-field" placeholder="Enter your email here" aria-describedby="emailHelp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputPassword" class="form-label">Create Your Password</label>
+                                <input type="password" name="password" class="form-control" th:value="${user.password}" id="password-field" placeholder="enter your new password here">
+                            </div>   
+                            <div class="mb-3">
+                                <label for="InputAbout" class="form-label">Tell us something about yourself</label>
+                                <textarea class="form-control" th:text="${user.about}" name="about" id="about-field" rows="3" style="resize: none;" placeholder="enter something about you"></textarea>
+                            </div>   
+                            <div class="mb-3">
+                                <input type="checkbox" name="aggrement" id="aggrement-field" class="form-check-input"/>
+                                <label for="aggrement">Accept the terms and conditions</label>
+                            </div>
+                            <div class="container text-center">
+                                <button type="submit" style="width: 100px;" class="btn bg-primary text-white">Signup</button>
+                                <button type="reset" style="width: 100px; margin-left: 20px;" class="btn btn-secondary text-white">Reset</button>
+                            </div>                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

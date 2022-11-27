@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::Layout(~{login::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="col-md-4 offset-md-4">
+                <div class="my-card">
+                    <div th:if="${param.error}" class="alert alert-danger text-center">
+                        Invalid Username or Password !!
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-danger text-center">
+                        You have been logged out !!
+                    </div>
+                    <div class="container text-center">
+                        <img style="width: 40px; padding-bottom: 10px; padding-top: 10px;"
+                            th:src="@{/img/login-icon.png}" />
+                    </div>
+                    <form method="post" th:action="@{/signin}">
+
+                        <!-- Email input -->
+                        <div class="mb-3">
+                            <label for="InputEmail" class="form-label">Your Email</label>
+                            <input type="email" id="username" name="username" class="form-control" />
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="mb-3">
+                            <label for="InputEmail" name="password" class="form-label">Your Password</label>
+                            <input type="password" id="password" name="password" class="form-control" />
+                        </div>
+
+                        
+
+                       
+                        <div class="text-center container" style="margin-top: 30px;">
+                            <button type="submit" width="100px" class="btn bg-primary text-white">Sign in</button>
+                            <button type="button" width="100px" class="btn bg-secondary text-white"><a style="text-decoration: none; color: white;" th:href="@{/signup}">Register</a></button>
+                            <button type="button" class="btn bg-secondary text-white"><a style="text-decoration: none; color: white;" th:href="@{/forgot}">Forgot Password</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

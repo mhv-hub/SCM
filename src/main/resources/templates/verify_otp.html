@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+</head>
+<body>
+    <section>
+
+        <div class="container">
+            <div class="col-md-4 offset-md-4">
+                <div class="my-card">
+                    <h4 class="text-center mb-5">RECOVER YOUR ACCOUNT</h4>
+                    <div th:if="${param.error}" class="alert alert-danger text-center">
+                        Invalid Username or Password !!
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-danger text-center">
+                        You have been logged out !!
+                    </div>
+
+                    <form action="/validate-otp" method="POST">
+                        <div class="form-group">
+                            <input required="required" style="text-align: center;" name="otp" class="form-control mb-3" type="number" placeholder="Enter OTP received on your email"/>
+                            <div class="container text-center">
+                                <button type="submit" class="btn btn-warning">VERIFY OTP</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

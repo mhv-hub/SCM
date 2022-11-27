@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+</head>
+
+<body>
+    <section>
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center mb-3">YOUR CONTACTS</h3>
+                <div class="container-fluid mt-1">
+                    <div class="col-md-10 offset-md-1">
+
+                        <!-- Search -->
+                        <div class="search-container my-4">
+                            <input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search your contacts...."/>
+                            <div class="search-result">
+                                <h3>search res 1</h3>
+                            </div>
+                        </div>
+
+                        <table class="table table-container">
+                            <thead class="table-head">
+                                <tr>
+                                    <th scope="col">#ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c : ${contacts}">
+                                    <th scope="row" th:text="${'SCM'+c.cId}">1</th>
+                                    <td>
+                                        <img class="profile-pic" src="" th:src="@{'/img/'+${c.image}}" alt="profile photo">
+                                        <span th:text="${c.name}"></span>
+                                    </td>
+                                    <td>
+                                        <a href="#" th:href="@{'/user/contact/'+${c.cId}}">
+                                        <span th:text="${c.email}"></span>
+                                    </a>
+                                    </td>
+                                    <td th:text="${c.phone}"></td>
+                                    <td>
+                                        <button class="plain-button"><a href="#" th:onclick="|deleteContact(${c.cId},${currentPage})|"><i class="fa-solid fa-trash"></i></a></button>
+                                        <button class="plain-button"><i class="fa-solid fa-pencil"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li th:if="${currentPage &gt; 0}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage-1}}">Previous</a></li>
+                              <li th:if="${totalPages &gt; 1}" th:classappend="${currentPage==i-1 ? 'active' : ''}" th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${i-1}}"><span th:text="${i}"></span></a></li>
+                              <li th:if="${currentPage &lt; totalPages-1}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contacts/'+${currentPage+1}}">Next</a></li>
+                            </ul>
+                          </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready( () => {
+                $(".item").removeClass("active-link");
+                $("#show-link").addClass("active-link");
+            });
+        </script>
+
+    </section>
+</body>
+
+</html>

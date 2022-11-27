@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+</head>
+
+<body>
+    <section>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="container">
+                    <img class="profile-pic-main" src="" th:src="@{'/img/'+${contact.image}}" alt="profile photo">
+                </div>
+                <div>
+                    <span th:text="${contact.name}"></span>
+                    <span th:text="${contact.secondName}"></span>
+                    <span th:text="${contact.email}"></span>
+                    <span th:text="${contact.phone}"></span>
+                    <span th:text="${contact.description}"></span>
+                    
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready( () => {
+                $(".item").removeClass("active-link");
+                $("#details-link").addClass("active-link");
+            });
+        </script>
+    </section>
+</body>
+
+</html>

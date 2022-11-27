@@ -1,0 +1,182 @@
+body{
+    background: #e2e2e2!important; 
+}
+
+.bg-primary{
+    background: #009688 !important;
+}
+
+.banner{
+    width: 100%;
+    height: 93vh;
+    color: white;
+    background: linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)), url(../img/home-back.jpg);
+    background-size: cover;
+}
+
+.my-card{
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2.4rem 4.8rem rgb(0 0 0 / 8%);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.grid-2-col{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: auto;
+}
+
+.grid-left{
+    float: left;
+}
+
+.grid-right{
+    float: left;
+    align-self: center;
+}
+
+.sidebar{
+    width: 18%;
+    background: white;
+    height: 100vh;
+    position: fixed;
+    padding-top: 45px;
+    z-index: 10;
+}
+
+.content{
+    margin-left: 18%;
+    z-index: 1;
+    margin-top: 55px;
+}
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: grey;
+}
+
+.sidebar a:hover{
+    background: #e2e2e2;
+}
+
+.sidebar .divider{
+    height: 0.5px;
+    width: 100%;
+    background: #e2e2e2;
+    margin-top: 10px;
+}
+
+.sidebar .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+    color: grey;
+}
+
+.sidebar .crossBtn:hover{
+    color: black;
+}
+
+.content .ham-icon{
+    color: grey;
+    display: none;
+    margin-top: 25px;
+}
+
+.content .ham-icon:hover{
+    color: black;
+}
+
+.card-body{
+    margin: 25px;
+    padding: 25px;
+}
+
+.card {
+    margin: 25px;
+}
+
+.table-container{
+    border-top: 1px solid black;
+}
+
+.table-head{
+    border-bottom: 1px solid black;
+    background: #e2e2e2;
+    color: grey;
+}
+
+.plain-button{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    margin-right: 10px;
+}
+
+.profile-pic{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-pic-main{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.search-container{
+    position: relative;
+}
+
+.search-result{
+    position: absolute;
+    background: white;
+    width: 100%;
+    border: 1px solid grey;
+    box-shadow: 0 2.4rem 4.8rem rgb(0 0 0 / 8%);
+    display: none;
+    z-index: 20;
+}
+
+.active-link {
+    background: #009688;
+    color: white !important;
+}
+
+@media only screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background: white;
+        height: 100vh;
+        padding-left: 5px;
+        padding-right: 5px;
+        position: fixed;
+        padding-top: 20px;
+        z-index: 10;
+    }
+
+    .content{
+        margin-left: 0% !important;
+        z-index: 1;
+    }
+    .content .ham-icon{
+        color: grey;
+        display: inline-block;
+        margin-top: 25px;
+    }
+}

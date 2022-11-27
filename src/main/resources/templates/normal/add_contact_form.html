@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <section>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center mb-3">ADD CONTACT</h3>
+                <div class="container-fluid mt-1">
+                    <div class="col-md-8 offset-md-2">
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" style="padding-bottom: 0px;" role="alert">
+                            <p class="text-center" th:text="${session.message.content}"></p>
+                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+                        <form action="#" th:object="${contact}" enctype="multipart/form-data" method="post" th:action="@{/user/process-contact}" class="mt-2">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa fa-user-alt" id="addon-fname"></i></span>
+                                    <input type="text" id="name" name="name" placeholder="Enter first name here" class="form-control">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa fa-user-alt" id="addon-fname"></i></span>
+                                    <input type="text" id="secondName" name="secondName" placeholder="Enter second name here" class="form-control">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                                    <span class="input-group-text">+91</span>
+                                    <input type="text" id="phone" name="phone" placeholder="Enter phone number here" class="form-control">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>                                    
+                                    <input type="email" id="email" name="email" placeholder="Enter email id here" class="form-control">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="fa-solid fa-briefcase"></i></span>                                    
+                                    <input type="text" id="work" name="work" placeholder="Enter designation here" class="form-control">
+                                </div>
+
+                                <div class="input-group mb-3">                            
+                                    <textarea style="width: match-parent; height: 100px; resize: none;" id="mytextareaa" rows="4" name="description" placeholder="Enter contact description here" class="form-control"></textarea>
+                                </div>
+
+                                <div class="custom-file mb-3">                                    
+                                    <input type="file" id="image" name="profileImage" class="form-control">
+                                </div>
+
+                                <div class="container text-center">
+                                    <button class="btn bg-primary text-white">Save Contact</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+              selector: '#mytextarea'
+            });
+          </script>
+          <script>
+            $(document).ready( () => {
+                $(".item").removeClass("active-link");
+                $("#add-link").addClass("active-link");
+            });
+        </script>
+    </section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Contact Manager</title>
+</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+</head>
+<body>
+    <section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="text-center mb-5">CHANGE PASSWORD</h3>
+                            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" style="padding-bottom: 0px;" role="alert">
+                                <p class="text-center" th:text="${session.message.content}"></p>
+                                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                            </div>
+                            <form th:action="@{/user/change-password}" method="POST">
+                                <div class="form-group">
+                                    <input name="oldPass" type="password" class="form-control mb-3" placeholder="Enter your old password"/>
+                                    <input name="newPass" type="password" class="form-control mb-3" placeholder="Enter your new password"/>
+                                    <input name="newPassConf" type="password" class="form-control mb-3" placeholder="Re-enter your new password"/>
+                                </div>
+                                <div class="container text-center">
+                                    <button type="submit" class="btn btn-success">SUBMIT</button>
+                                    <button type="reset" class="btn btn-warning">RESET</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready( () => {
+                $(".item").removeClass("active-link");
+                $("#settings-link").addClass("active-link");
+            });
+        </script>
+    </section>
+</body>
+</html>
