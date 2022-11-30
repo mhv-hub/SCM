@@ -18,6 +18,7 @@
 	<groupId>com.smart</groupId>
 	<artifactId>smartcontactmanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>smartcontactmanager</name>
 	<description>First SpringBoot Project</description>
 	<properties>
