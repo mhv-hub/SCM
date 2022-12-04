@@ -69,7 +69,6 @@ public class UserController {
 	public String dashboard(Model model, Principal principal) {
 		model.addAttribute("title", "User Dashboard");
 		logger.info("***APP LOG || User logged in : " + principal.getName());
-		Message message = new Message("Dummy message objrct", "error");
 		return "normal/user_dashboard";
 	}
 

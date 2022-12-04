@@ -21,10 +21,10 @@ public class SearchController {
 	private UserRepository userRepositorty;
 	@Autowired
 	private ContactRepository contactRepository;
-	
+
 	@GetMapping("/search/{query}")
-	public ResponseEntity<?> search(@PathVariable("query") String query, Principal principal){
-		
+	public ResponseEntity<?> search(@PathVariable("query") String query, Principal principal) {
+
 		System.out.println(query);
 		User user = this.userRepositorty.getUserByUserName(principal.getName());
 		List<Contact> contacts = this.contactRepository.findByNameContainingAndUser(query, user);
